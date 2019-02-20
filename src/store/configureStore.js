@@ -1,8 +1,18 @@
 import {createStore} from 'redux'
+import rootReducer from '../reducers'
+import {loadState} from "../localStorage/localStorage";
 
-const configureStore = preloadedState =>{
+const persistedState = loadState();
+
+
+const configureStore = preloadedState =>(
     createStore(
         rootReducer,
-        preloadedState,
-        composeEnha
+        persistedState,
+
     )
+);
+
+const store = configureStore({});
+
+export default store;
